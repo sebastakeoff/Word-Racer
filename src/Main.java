@@ -24,29 +24,37 @@ public class Main {
 
         int players = 2;
         int time = 2;
+        int gameInstances = 0;
         
-        for(int i = 0; i < players; i++) {
-            if(i == 0) current = p1;
-            else current = p2;
+        do {
             
-            System.out.println("Usa las siguientes letras: " + current.game.word.getLetters());
-            System.out.println("Palabras disponibles: " + current.game.word.getDictionary().keySet());
+            if(gameInstances != 0) {
+                System.out.println("Hubo empate!!! A la revancha!!");
+            }
+            
+            for(int i = 0; i < players; i++) {
+                if(i == 0) current = p1;
+                else current = p2;
 
-            for(int j = 0; j < time; j++) {
-                System.out.println(current.getName() + " ingresa tu palabra:");
-                String insertedWord = s.nextLine().toUpperCase();
-                current.game.addWord(insertedWord);
-                if(!current.game.word.isInLetters(insertedWord))
-                    System.out.println("Debe utilizar las letras dadas");
-                else if(!current.game.word.searchWord(insertedWord))
-                    System.out.println("No existe esa palabra");
-                else {
-                    System.out.println("Correcto!");
-                    current.setPoints();
+                System.out.println("Usa las siguientes letras: " + current.game.word.getLetters());
+                System.out.println("Palabras disponibles: " + current.game.word.getDictionary().keySet());
+
+                for(int j = 0; j < time; j++) {
+                    System.out.println(current.getName() + " ingresa tu palabra:");
+                    String insertedWord = s.nextLine().toUpperCase();
+                    current.game.addWord(insertedWord);
+                    if(!current.game.word.isInLetters(insertedWord))
+                        System.out.println("Debe utilizar las letras dadas");
+                    else if(!current.game.word.searchWord(insertedWord))
+                        System.out.println("No existe esa palabra");
+                    else {
+                        System.out.println("Correcto!");
+                        current.setPoints();
+                    }
                 }
             }
-        }
-        
+            gameInstances++;
+        } while(p1.getPoints() == p2.getPoints());
         
         
         System.out.print("Jugador 1: " + p1.game.getInsertedWords());
@@ -54,8 +62,7 @@ public class Main {
         System.out.print("Jugador 2: " + p2.game.getInsertedWords());
         System.out.println(" puntos: " + p2.getPoints());
 
-        if(p1.getPoints() == p2.getPoints()) System.out.println("Hubo empate!");
-        else if(p1.getPoints() > p2.getPoints()) System.out.println("Ganó Jugador 1!");
+        if(p1.getPoints() > p2.getPoints()) System.out.println("Ganó Jugador 1!");
         else System.out.println("Ganó Jugador 2!");
     }
     
