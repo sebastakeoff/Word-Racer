@@ -45,6 +45,13 @@ public class Player {
         return name;
     }
     
+    /**
+     * Método para resetear puntos jugadores
+     * @return players points to 0
+     */
+    public int resetPoints() {
+        return points = 0;
+    }
     
     
 }
