@@ -1,3 +1,4 @@
+package model;
 /**
  * @author Grupo 11 - Paradigmas de programación
  */
@@ -27,6 +28,7 @@ public class WordRacer {
     public void addWord(String w) {
         insertedWords.add(w);
     }
+    
     
     public ArrayList<String> getInsertedWords(){
         return insertedWords;

@@ -1,3 +1,4 @@
+package model;
 /**
  * @author   Grupo 11 - Paradigmas de programación
  */

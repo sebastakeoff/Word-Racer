@@ -1,3 +1,4 @@
+package model;
 /**
  * Clase de jugadores. Asigna nombre y los puntos a los jugadores
  * Atributos privados para que no se puedan modificar por equivocación

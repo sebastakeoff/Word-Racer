@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="controller.GameViewController">
+    <stylesheets>
+        <URL value="@gameview.css" />
+    </stylesheets>
+   <children>
+      <Button fx:id="btnInsertWord" defaultButton="true" layoutX="273.0" layoutY="239.0" mnemonicParsing="false" onAction="#addWord" text="Insertar" />
+      <TextField fx:id="txtNewWord" layoutX="222.0" layoutY="181.0" />
+      <Label fx:id="lblPlayersName" layoutX="262.0" layoutY="39.0" text="Players Name" />
+      <Label layoutX="132.0" layoutY="81.0" text="Use estas letras:" />
+      <Label fx:id="lblLetters" layoutX="258.0" layoutY="81.0" text="Use estas letras:" />
+      <Label layoutX="82.0" layoutY="186.0" text="Ingrese su palabra" />
+      <Label fx:id="lblDictionary" layoutX="255.0" layoutY="333.0" text="Palabras disponibles" />
+      <Label fx:id="lblGameMessage" layoutX="262.0" layoutY="14.0" text="A Jugar!!!" />
+      <Label fx:id="lblMessage" layoutX="274.0" layoutY="141.0" text="Suerte!!!" />
+   </children>
+</AnchorPane>
