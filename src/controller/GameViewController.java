@@ -8,6 +8,12 @@ package controller;
 import model.Player;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.Timer;
+import java.util.TimerTask;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -17,6 +23,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.util.Duration;
 
 /**
  * FXML Controller class
@@ -32,6 +39,9 @@ public class GameViewController implements Initializable {
     private int gameInstances = 0;
     int players = 2;
     int time = 2;
+    
+    Timeline animation;
+    int countDownTime = 20;
     
     int i = 0, j = 0;
     
@@ -55,6 +65,8 @@ public class GameViewController implements Initializable {
     private Label lblUsr1Points;
     @FXML
     private Label lblUsr2Points;
+    @FXML
+    private Label lblCountDown;
 
     /**
      * Initializes the controller class.
@@ -68,39 +80,11 @@ public class GameViewController implements Initializable {
         this.lblLetters.setText(current.game.word.getLetters());
         this.lblDictionary.setText(current.game.word.getDictionary().keySet() + "");
         //this.txtNewWord.requestFocus();
-
-        /*
-        do {
-            
-            if(gameInstances != 0) {
-                this.lblGameMessage.setText("Hubo empate!! A la Revancha");
-            }
-            
-            for(int i = 0; i < players; i++) {
-                if(i == 0) current = p1;
-                else current = p2;
-
-                
-                this.lblLetters.setText(current.game.word.getLetters());
-                this.lblDictionary.setText(current.game.word.getDictionary().keySet() + "");
-
-                for(int j = 0; j < time; j++) {
-                    //System.out.println(current.getName() + " ingresa tu palabra:");
-                    //String insertedWord = s.nextLine().toUpperCase();
-                }
-            }
-            gameInstances++;
-        } while(p1.getPoints() == p2.getPoints());
         
-        /*
-        System.out.print("Jugador 1: " + p1.game.getInsertedWords());
-        System.out.println(" puntos: " + p1.getPoints());
-        System.out.print("Jugador 2: " + p2.game.getInsertedWords());
-        System.out.println(" puntos: " + p2.getPoints());
+        animation = new Timeline(new KeyFrame(Duration.seconds(1), e -> countdown()));
+        animation.setCycleCount(Timeline.INDEFINITE);
+        animation.play();
 
-        if(p1.getPoints() > p2.getPoints()) System.out.println("Ganó Jugador 1!");
-        else System.out.println("Ganó Jugador 2!");
-        */
     }    
 
     @FXML
@@ -168,6 +152,15 @@ public class GameViewController implements Initializable {
 
 
     }
+    
+    public void countdown() {
+        
+        if(countDownTime > 0) countDownTime--;
+        
+        lblCountDown.setText(countDownTime + " segundos");
+        
+    }
+    
 
     
 }
