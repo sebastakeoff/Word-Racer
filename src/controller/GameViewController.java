@@ -38,10 +38,10 @@ public class GameViewController implements Initializable {
     
     private int gameInstances = 0;
     int players = 2;
-    int time = 2;
+    int time = 5;
     
     Timeline animation;
-    int countDownTime = 20;
+    int countDownTime = time;
     
     int i = 0, j = 0;
     
@@ -67,32 +67,44 @@ public class GameViewController implements Initializable {
     private Label lblUsr2Points;
     @FXML
     private Label lblCountDown;
+    @FXML
+    private Button btnStartGame;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
         
         current = p1;
         this.lblPlayersName.setText(current.getName());
         this.lblLetters.setText(current.game.word.getLetters());
         this.lblDictionary.setText(current.game.word.getDictionary().keySet() + "");
-        //this.txtNewWord.requestFocus();
         
+        this.txtNewWord.setEditable(false);
+        //this.txtNewWord.requestFocus();
+
+//        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+//        alert.setHeaderText(null);
+//        
+//        alert.setTitle("Comienza el juego!");
+//        alert.setContentText("Turno de " + p1.getName() + " ");                    
+//        alert.showAndWait();
+
         animation = new Timeline(new KeyFrame(Duration.seconds(1), e -> countdown()));
-        animation.setCycleCount(Timeline.INDEFINITE);
-        animation.play();
+        //animation.setCycleCount(Timeline.INDEFINITE);
+        animation.setCycleCount(-1);
+        //animation.play();
+        
+        
+        
+        
 
     }    
 
     @FXML
     private void addWord(ActionEvent event) {
         String insertedWord = this.txtNewWord.getText().toUpperCase();
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setHeaderText(null);
-        
         
         current.game.addWord(insertedWord);
         if(!current.game.word.isInLetters(insertedWord))
@@ -100,26 +112,90 @@ public class GameViewController implements Initializable {
         else if(!current.game.word.searchWord(insertedWord))
             this.lblMessage.setText("No existe esa palabra");
         else {
-            this.lblMessage.setText("Correcto!");
+            //this.lblMessage.setText("Correcto!");
+            this.lblMessage.setText(current.game.word.getDictionary().get(insertedWord));
             current.setPoints();
             
         }
         this.lblUsr1Points.setText(p1.getPoints() + "");
         this.lblUsr2Points.setText(p2.getPoints() + "");
         
-        j++;
-                
-        if(j > time) {
+//        j++;
+//                
+//        if(j > time) {
+//            if(current == p2 && p1.getPoints() != p2.getPoints()) {
+//                alert.setTitle("Felicidades");
+//                
+//                if(p1.getPoints() > p2.getPoints()) {
+//                    alert.setContentText(p1.getName() + " ganó con " + p1.getPoints() + " puntos!");                    
+//                } else {
+//                    alert.setContentText(p2.getName() + " ganó con " + p2.getPoints() + " puntos!");                    
+//                }
+//                
+//                alert.showAndWait();
+//                
+//                // Reset everything to restart game-There was a Winner!!
+//                current = p1;
+//                p1.resetPoints();
+//                p2.resetPoints();
+//                this.lblUsr1Points.setText(p1.getPoints() + "");
+//                this.lblUsr2Points.setText(p2.getPoints() + "");
+//                this.lblPlayersName.setText(current.getName());
+//                
+//            } else {
+//                
+//                if(current == p2 && p1.getPoints() == p2.getPoints()) {
+//                    alert.setTitle("Empate!!");
+//                    alert.setContentText("Sigue la revancha!!");
+//                    alert.showAndWait();
+//                    this.lblGameMessage.setText("Comienza la Revancha!!");
+//                }
+//                
+//                current = (current != p1) ? p1: p2;
+//                this.lblPlayersName.setText(current.getName());
+//                //this.lblUsrPoints.setText(current.getPoints() + "");
+//                j = 0;
+//            }
+//        }
+        
+        this.txtNewWord.setText("");
+        this.txtNewWord.requestFocus();
+        
+        
+
+
+    }
+    
+    public void countdown() {
+    
+//        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+//        alert.setHeaderText(null);
+        
+        if(countDownTime > 0) {
+            this.countDownTime--;
+            this.lblCountDown.setText(countDownTime + " segundos");
+        } else {
+            this.countDownTime = time;
+            this.txtNewWord.setEditable(false);
+            
             if(current == p2 && p1.getPoints() != p2.getPoints()) {
-                alert.setTitle("Felicidades");
+                //alert.setTitle("Felicidades");
+                String winner;
+                int winnerPoints;
                 
                 if(p1.getPoints() > p2.getPoints()) {
-                    alert.setContentText(p1.getName() + " ganó con " + p1.getPoints() + " puntos!");                    
+                    //alert.setContentText(p1.getName() + " ganó con " + p1.getPoints() + " puntos!");
+                    winner = p1.getName();
+                    winnerPoints = p1.getPoints();
                 } else {
-                    alert.setContentText(p2.getName() + " ganó con " + p2.getPoints() + " puntos!");                    
+                    //alert.setContentText(p2.getName() + " ganó con " + p2.getPoints() + " puntos!");                    
+                    winner = p2.getName();
+                    winnerPoints = p2.getPoints();
                 }
                 
-                alert.showAndWait();
+                //alert.showAndWait();
+                
+                this.lblGameMessage.setText("Ganó " + winner + " con " + winnerPoints);
                 
                 // Reset everything to restart game-There was a Winner!!
                 current = p1;
@@ -132,35 +208,46 @@ public class GameViewController implements Initializable {
             } else {
                 
                 if(current == p2 && p1.getPoints() == p2.getPoints()) {
-                    alert.setTitle("Empate!!");
-                    alert.setContentText("Sigue la revancha!!");
-                    alert.showAndWait();
-                    this.lblGameMessage.setText("Comienza la Revancha!!");
+//                    alert.setTitle("Empate!!");
+//                    alert.setContentText("Sigue la revancha!!");
+//                    alert.showAndWait();
+                    this.lblGameMessage.setText("Empate: Comienza la Revancha!!");
                 }
                 
                 current = (current != p1) ? p1: p2;
-                this.lblPlayersName.setText(current.getName());
+//                alert.setTitle("Cambio de turno!");
+//                alert.setContentText("Turno de " + current.getName() + " ");                    
+//                alert.showAndWait();
+               // animation.setDelay(Duration.seconds(5));
+                
+                
+                
+                
                 //this.lblUsrPoints.setText(current.getPoints() + "");
-                j = 0;
             }
+            
+            animation.stop();
+            this.lblCountDown.setText(countDownTime + " segundos");
+            this.lblPlayersName.setText(current.getName());
+
+            
         }
         
-        this.txtNewWord.setText("");
-        this.txtNewWord.requestFocus();
         
-        
-
-
     }
     
-    public void countdown() {
-        
-        if(countDownTime > 0) countDownTime--;
-        
+
+    @FXML
+    private void startGame(ActionEvent event) {
+    
         lblCountDown.setText(countDownTime + " segundos");
+        this.txtNewWord.setText("");
+        this.txtNewWord.setEditable(true);
+        this.txtNewWord.requestFocus();
+
+        animation.play();
         
     }
-    
 
     
 }

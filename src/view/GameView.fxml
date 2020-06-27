@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import java.net.*?>
 <?import java.util.*?>
@@ -7,24 +8,40 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="controller.GameViewController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.GameViewController">
     <stylesheets>
         <URL value="@gameview.css" />
     </stylesheets>
    <children>
-      <Button fx:id="btnInsertWord" defaultButton="true" layoutX="273.0" layoutY="239.0" mnemonicParsing="false" onAction="#addWord" text="Insertar" />
-      <TextField fx:id="txtNewWord" layoutX="222.0" layoutY="181.0" />
-      <Label fx:id="lblPlayersName" layoutX="197.0" layoutY="40.0" text="Players Name" />
-      <Label layoutX="49.0" layoutY="90.0" text="Use estas letras:" />
-      <Label fx:id="lblLetters" layoutX="258.0" layoutY="81.0" text="Use estas letras:" />
-      <Label layoutX="82.0" layoutY="186.0" text="Ingrese su palabra" />
-      <Label fx:id="lblDictionary" layoutX="255.0" layoutY="333.0" text="Palabras disponibles" />
-      <Label fx:id="lblGameMessage" layoutX="262.0" layoutY="14.0" text="A Jugar!!!" />
-      <Label fx:id="lblMessage" layoutX="412.0" layoutY="186.0" text="Suerte!!!" />
-      <Label layoutX="421.0" layoutY="31.0" text="Puntos p1:" />
-      <Label fx:id="lblUsr1Points" layoutX="504.0" layoutY="31.0" text="0" />
-      <Label fx:id="lblUsr2Points" layoutX="504.0" layoutY="73.0" text="0" />
-      <Label layoutX="421.0" layoutY="73.0" text="Puntos p2:" />
-      <Label layoutX="82.0" layoutY="40.0" text="Turno de:" />
+      <Button fx:id="btnInsertWord" defaultButton="true" layoutX="265.0" layoutY="261.0" mnemonicParsing="false" onAction="#addWord" text="Insertar" />
+      <TextField fx:id="txtNewWord" layoutX="214.0" layoutY="203.0" />
+      <Label fx:id="lblPlayersName" layoutX="418.0" layoutY="18.0" text="Players Name">
+         <font>
+            <Font name="System Bold Italic" size="18.0" />
+         </font></Label>
+      <Label layoutX="39.0" layoutY="90.0" text="Con estas letras arma tus palabras:" />
+      <Label fx:id="lblLetters" alignment="CENTER" layoutX="235.0" layoutY="87.0" text="Use estas letras:" textAlignment="CENTER">
+         <font>
+            <Font size="19.0" />
+         </font></Label>
+      <Label layoutX="74.0" layoutY="208.0" text="Ingrese su palabra" />
+      <Label fx:id="lblDictionary" layoutX="244.0" layoutY="115.0" text="Palabras disponibles" />
+      <Label fx:id="lblGameMessage" layoutX="27.0" layoutY="14.0" text="Comienza el juego!!" textAlignment="CENTER">
+         <font>
+            <Font size="26.0" />
+         </font></Label>
+      <Label fx:id="lblMessage" layoutX="404.0" layoutY="208.0" text="Suerte!!!" />
+      <Label layoutX="469.0" layoutY="307.0" text="Puntos p1:" />
+      <Label fx:id="lblUsr1Points" layoutX="552.0" layoutY="307.0" text="0" />
+      <Label fx:id="lblUsr2Points" layoutX="552.0" layoutY="328.0" text="0" />
+      <Label layoutX="469.0" layoutY="328.0" text="Puntos p2:" />
+      <Label layoutX="374.0" layoutY="51.0" text="Presiona start para empezar a jugar" />
+      <Label fx:id="lblCountDown" layoutX="231.0" layoutY="168.0" text="20 segundos" textAlignment="CENTER">
+         <font>
+            <Font name="System Bold" size="22.0" />
+         </font>
+      </Label>
+      <Button fx:id="btnStartGame" layoutX="447.0" layoutY="85.0" mnemonicParsing="false" onAction="#startGame" text="Start" />
+      <Label layoutX="39.0" layoutY="115.0" text="(Temporal) Palabras disponibles:" />
    </children>
 </AnchorPane>
