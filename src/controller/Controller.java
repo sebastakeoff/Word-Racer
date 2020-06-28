@@ -5,6 +5,7 @@
  */
 package controller;
 
+import model.Player;
 import controller.TutorialController;
 import java.io.IOException;
 import java.net.URL;
@@ -13,6 +14,7 @@ import javafx.animation.Interpolator;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -29,6 +31,11 @@ import javafx.util.Duration;
 
 
 public class Controller implements Initializable {
+    
+    Player p1;
+    Player p2;
+    
+    ObservableList<Player> players;
     
     @FXML
     private Button btnTuto, btnPlay;
@@ -48,9 +55,16 @@ public class Controller implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // Primera ejecución del juego
     }
+    
+    public void initAttributes (ObservableList<Player> players) {
+        this.players = players;
+    }
 
     @FXML
     private void loadGamePlay(ActionEvent event) throws IOException {
+        
+        p1 = new Player(txtPy1.getText());
+        p2 = new Player(txtPy2.getText());
         
         Parent root = FXMLLoader.load(getClass().getResource("/view/GameView.fxml"));
         Scene scene = btnPlay.getScene();

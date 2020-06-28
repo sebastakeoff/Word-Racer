@@ -79,6 +79,7 @@ public class Word {
      * @return el diccionario generado
      */
     public Map<String, String> createDictionary() {
+    
         dictio.put("BUS", "Servicio público");
         dictio.put("HOUSE", "Casa");
         dictio.put("HORSE", "Caballo");

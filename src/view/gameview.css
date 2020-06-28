@@ -3,8 +3,8 @@
  */
 
 .mainFxmlClass {
-    -fx-background-color: #F5F5F5;
-
+    /* -fx-background-color: #F5F5F5;*/
+    -fx-background-image: url("/img/WRGameView.png")
 }
 .bodybg {
     -fx-background-image: url("/img/flag.jpg")

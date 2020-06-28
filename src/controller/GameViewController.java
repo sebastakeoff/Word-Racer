@@ -31,19 +31,21 @@ import javafx.util.Duration;
  * @author franciscotabares
  */
 public class GameViewController implements Initializable {
+    
 
     Player p1 = new Player("Jugador1");
     Player p2 = new Player("Jugador2");
     Player current;
     
-    private int gameInstances = 0;
-    int players = 2;
+    
+    //private int gameInstances = 0;
+    //int players = 2;
     int time = 5;
     
     Timeline animation;
     int countDownTime = time;
     
-    int i = 0, j = 0;
+    //int i = 0, j = 0;
     
 
     @FXML
@@ -69,6 +71,10 @@ public class GameViewController implements Initializable {
     private Label lblCountDown;
     @FXML
     private Button btnStartGame;
+    @FXML
+    private Label lblPlayerPointsName1;
+    @FXML
+    private Label lblPlayerPointsName2;
 
     /**
      * Initializes the controller class.
@@ -80,6 +86,8 @@ public class GameViewController implements Initializable {
         this.lblPlayersName.setText(current.getName());
         this.lblLetters.setText(current.game.word.getLetters());
         this.lblDictionary.setText(current.game.word.getDictionary().keySet() + "");
+        this.lblPlayerPointsName1.setText(p1.getName());
+        this.lblPlayerPointsName2.setText(p2.getName());
         
         this.txtNewWord.setEditable(false);
         //this.txtNewWord.requestFocus();
@@ -91,8 +99,10 @@ public class GameViewController implements Initializable {
 //        alert.setContentText("Turno de " + p1.getName() + " ");                    
 //        alert.showAndWait();
 
+        // Cada segundo llama el método countdown()
         animation = new Timeline(new KeyFrame(Duration.seconds(1), e -> countdown()));
         //animation.setCycleCount(Timeline.INDEFINITE);
+        // Definir cuántas veces se va a repetir el timeline
         animation.setCycleCount(-1);
         //animation.play();
         
@@ -120,51 +130,14 @@ public class GameViewController implements Initializable {
         this.lblUsr1Points.setText(p1.getPoints() + "");
         this.lblUsr2Points.setText(p2.getPoints() + "");
         
-//        j++;
-//                
-//        if(j > time) {
-//            if(current == p2 && p1.getPoints() != p2.getPoints()) {
-//                alert.setTitle("Felicidades");
-//                
-//                if(p1.getPoints() > p2.getPoints()) {
-//                    alert.setContentText(p1.getName() + " ganó con " + p1.getPoints() + " puntos!");                    
-//                } else {
-//                    alert.setContentText(p2.getName() + " ganó con " + p2.getPoints() + " puntos!");                    
-//                }
-//                
-//                alert.showAndWait();
-//                
-//                // Reset everything to restart game-There was a Winner!!
-//                current = p1;
-//                p1.resetPoints();
-//                p2.resetPoints();
-//                this.lblUsr1Points.setText(p1.getPoints() + "");
-//                this.lblUsr2Points.setText(p2.getPoints() + "");
-//                this.lblPlayersName.setText(current.getName());
-//                
-//            } else {
-//                
-//                if(current == p2 && p1.getPoints() == p2.getPoints()) {
-//                    alert.setTitle("Empate!!");
-//                    alert.setContentText("Sigue la revancha!!");
-//                    alert.showAndWait();
-//                    this.lblGameMessage.setText("Comienza la Revancha!!");
-//                }
-//                
-//                current = (current != p1) ? p1: p2;
-//                this.lblPlayersName.setText(current.getName());
-//                //this.lblUsrPoints.setText(current.getPoints() + "");
-//                j = 0;
-//            }
-//        }
-        
+
+        // Pone en blanco el cuadre de instertar palabras
         this.txtNewWord.setText("");
+        // Pone el cursor al cuadro de instertar palabras
         this.txtNewWord.requestFocus();
         
-        
-
-
     }
+    
     
     public void countdown() {
     
@@ -172,11 +145,16 @@ public class GameViewController implements Initializable {
 //        alert.setHeaderText(null);
         
         if(countDownTime > 0) {
+            // Empieza la cuenta regresiva
             this.countDownTime--;
+            // Se actualiza el label con el tiempo actual
             this.lblCountDown.setText(countDownTime + " segundos");
         } else {
+            // Se inicia el contador de nuevo
             this.countDownTime = time;
+            // Se desabilita edición del texto
             this.txtNewWord.setEditable(false);
+            
             
             if(current == p2 && p1.getPoints() != p2.getPoints()) {
                 //alert.setTitle("Felicidades");
@@ -213,6 +191,8 @@ public class GameViewController implements Initializable {
 //                    alert.showAndWait();
                     this.lblGameMessage.setText("Empate: Comienza la Revancha!!");
                 }
+                
+                
                 
                 current = (current != p1) ? p1: p2;
 //                alert.setTitle("Cambio de turno!");
