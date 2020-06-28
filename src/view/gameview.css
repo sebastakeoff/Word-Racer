@@ -3,5 +3,9 @@
  */
 
 .mainFxmlClass {
+    -fx-background-color: #F5F5F5;
 
+}
+.bodybg {
+    -fx-background-image: url("/img/flag.jpg")
 }
