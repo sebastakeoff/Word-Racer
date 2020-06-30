@@ -15,7 +15,7 @@
             <Insets />
          </opaqueInsets>
          <children>
-            <Button fx:id="btnTuto" layoutX="361.0" layoutY="233.0" mnemonicParsing="false" onAction="#loadTuto" text="TUTORIAL">
+            <Button fx:id="btnTuto" layoutX="361.0" layoutY="309.0" mnemonicParsing="false" onAction="#loadTuto" text="TUTORIAL">
                <font>
                   <Font name="Gill Sans Ultra Bold" size="18.0" />
                </font>
@@ -30,14 +30,14 @@
                   <Font name="Gill Sans Ultra Bold" size="30.0" />
                </font>
             </Button>
-            <TextField fx:id="txtPy2" layoutX="324.0" layoutY="392.0" />
-            <TextField fx:id="txtPy1" layoutX="324.0" layoutY="319.0" />
-            <Label fx:id="lblPy1" layoutX="213.0" layoutY="312.0" text="Player 1">
+            <TextField fx:id="txtPy2" layoutX="354.0" layoutY="444.0" />
+            <TextField fx:id="txtPy1" layoutX="354.0" layoutY="371.0" />
+            <Label fx:id="lblPy1" layoutX="239.0" layoutY="369.0" text="Player 1" textFill="#f27e03">
                <font>
                   <Font name="Gill Sans Ultra Bold Condensed" size="22.0" />
                </font>
             </Label>
-            <Label fx:id="lblPy2" layoutX="213.0" layoutY="385.0" text="Player 2">
+            <Label fx:id="lblPy2" layoutX="239.0" layoutY="442.0" text="Player 2" textFill="#c6f203">
                <font>
                   <Font name="Gill Sans Ultra Bold Condensed" size="22.0" />
                </font>

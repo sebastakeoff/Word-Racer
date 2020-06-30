@@ -40,7 +40,7 @@ public class GameViewController implements Initializable {
     
     //private int gameInstances = 0;
     //int players = 2;
-    int time = 5;
+    int time = 20;
     
     Timeline animation;
     int countDownTime = time;
@@ -123,12 +123,16 @@ public class GameViewController implements Initializable {
             this.lblMessage.setText("No existe esa palabra");
         else {
             //this.lblMessage.setText("Correcto!");
-            this.lblMessage.setText(current.game.word.getDictionary().get(insertedWord));
+            String msg = this.txtNewWord.getText().substring(0, 1).toUpperCase();
+            msg += this.txtNewWord.getText().substring(1);
+            msg += " = ";
+            msg += current.game.word.getDictionary().get(insertedWord);
+            this.lblMessage.setText(msg);
             current.setPoints();
             
         }
-        this.lblUsr1Points.setText(p1.getPoints() + "");
-        this.lblUsr2Points.setText(p2.getPoints() + "");
+        if(p1.getPoints() > 0) this.lblUsr1Points.setText(p1.getPoints() + "");
+        if(p2.getPoints() > 0) this.lblUsr2Points.setText(p2.getPoints() + "");
         
 
         // Pone en blanco el cuadre de instertar palabras
@@ -173,14 +177,14 @@ public class GameViewController implements Initializable {
                 
                 //alert.showAndWait();
                 
-                this.lblGameMessage.setText("Ganó " + winner + " con " + winnerPoints);
+                this.lblGameMessage.setText("Ganó " + winner + " con " + winnerPoints + " puntos!!");
                 
                 // Reset everything to restart game-There was a Winner!!
                 current = p1;
                 p1.resetPoints();
                 p2.resetPoints();
-                this.lblUsr1Points.setText(p1.getPoints() + "");
-                this.lblUsr2Points.setText(p2.getPoints() + "");
+                this.lblUsr1Points.setText(p1.getPoints() + "0");
+                this.lblUsr2Points.setText(p2.getPoints() + "0");
                 this.lblPlayersName.setText(current.getName());
                 
             } else {
@@ -191,7 +195,6 @@ public class GameViewController implements Initializable {
 //                    alert.showAndWait();
                     this.lblGameMessage.setText("Empate: Comienza la Revancha!!");
                 }
-                
                 
                 
                 current = (current != p1) ? p1: p2;
