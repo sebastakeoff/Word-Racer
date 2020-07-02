@@ -5,6 +5,7 @@
  */
 package controller;
 
+import java.io.File;
 import model.Player;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -23,6 +24,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.util.Duration;
 
 /**
@@ -46,6 +49,10 @@ public class GameViewController implements Initializable {
     int countDownTime = time;
     
     //int i = 0, j = 0;
+    String musicFile = "airhorn.mp3";
+
+    Media hornSound;
+    MediaPlayer hornPlayer;
     
 
     @FXML
@@ -107,6 +114,9 @@ public class GameViewController implements Initializable {
         //animation.play();
         
         
+        hornSound = new Media(new File(musicFile).toURI().toString());
+        hornPlayer = new MediaPlayer(hornSound);
+        
         
         
 
@@ -144,7 +154,7 @@ public class GameViewController implements Initializable {
     
     
     public void countdown() {
-    
+        
 //        Alert alert = new Alert(Alert.AlertType.INFORMATION);
 //        alert.setHeaderText(null);
         
@@ -153,6 +163,7 @@ public class GameViewController implements Initializable {
             this.countDownTime--;
             // Se actualiza el label con el tiempo actual
             this.lblCountDown.setText(countDownTime + " segundos");
+            if(countDownTime == 3) this.hornPlayer.stop();
         } else {
             // Se inicia el contador de nuevo
             this.countDownTime = time;
@@ -229,6 +240,8 @@ public class GameViewController implements Initializable {
         this.txtNewWord.requestFocus();
 
         animation.play();
+        hornPlayer.play();
+        
         
     }
 

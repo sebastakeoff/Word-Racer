@@ -63,8 +63,8 @@ public class Controller implements Initializable {
     @FXML
     private void loadGamePlay(ActionEvent event) throws IOException {
         
-        p1 = new Player(txtPy1.getText());
-        p2 = new Player(txtPy2.getText());
+        p1 = new Player(this.txtPy1.getText());
+        p2 = new Player(this.txtPy2.getText());
         
         Parent root = FXMLLoader.load(getClass().getResource("/view/GameView.fxml"));
         Scene scene = btnPlay.getScene();
